@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solicitudes - TESORERIA HBF</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+    
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="./assets/js/init-alpine.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/shared.js"></script>
+  </head>
+  <body>
+    <div
+      class="flex h-screen bg-gray-50 dark:bg-gray-900"
+      :class="{ 'overflow-hidden': isSideMenuOpen}"
+    >
+      <!-- Desktop sidebar -->
+      <aside
+        class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block"
+      >
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a
+            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+            href="#"
+          >
+            GRUPO HBF
+          </a>
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="index"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+           <ul>
+            <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="solicitudes"
+              >
+              <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor" 
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+                
+                <span class="ml-4">Solicitudes</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="transferencias"
+              >
+              <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor" 
+                >
+                  <path
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+                
+                <span class="ml-4">Transferencias</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="usuarios"
+              >
+              <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              ></path>
+            </svg>
+                <span class="ml-4">Usuarios</span>
+              </a>
+            </li>
+           
+          </ul> 
+          
+        </div>
+      </aside>
+      <!-- Mobile sidebar -->
+      <!-- Backdrop -->
+      <div
+        x-show="isSideMenuOpen"
+        x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+      ></div>
+      <aside
+        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
+        x-show="isSideMenuOpen"
+        x-transition:enter="transition ease-in-out duration-150"
+        x-transition:enter-start="opacity-0 transform -translate-x-20"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in-out duration-150"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0 transform -translate-x-20"
+        @click.away="closeSideMenu"
+        @keydown.escape="closeSideMenu"
+      >
+        <div class="py-4 text-gray-500 dark:text-gray-400">
+          <a
+            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+            href="#"
+          >
+            GRUPO HBF
+          </a>
+          <ul class="mt-6">
+            <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                href="index"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </a>
+            </li>
+           <ul>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="solicitudes"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path>
+                </svg>
+                <span class="ml-4">Solicitudes</span>
+              </a>
+            </li></ul>
+
+        </div>
+      </aside>
+      <div class="flex flex-col flex-1 w-full">
+        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+          <div
+            class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+          >
+            <!-- Mobile hamburger -->
+            <button
+              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              @click="toggleSideMenu"
+              aria-label="Menu"
+            >
+              <svg
+                class="w-6 h-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <!-- Search input -->
+            <div class="flex justify-center flex-1 lg:mr-32">
+              <div
+                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
+              >
+                <div class="absolute inset-y-0 flex items-center pl-2">
+                  
+                </div>
+                
+              </div>
+            </div>
+            <ul class="flex items-center flex-shrink-0 space-x-6">
+              <!-- Theme toggler -->
+              <li class="flex">
+                <button
+                  class="rounded-md focus:outline-none focus:shadow-outline-purple"
+                  @click="toggleTheme"
+                  aria-label="Toggle color mode"
+                >
+                  <template x-if="!dark">
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                      ></path>
+                    </svg>
+                  </template>
+                  <template x-if="dark">
+                    <svg
+                      class="w-5 h-5"
+                      aria-hidden="true"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </template>
+                </button>
+              </li>
+              <!-- Notifications menu -->
+              <li class="relative">
+                <button
+                  class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                  @click="toggleNotificationsMenu"
+                  @keydown.escape="closeNotificationsMenu"
+                  aria-label="Notifications"
+                  aria-haspopup="true"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+                    ></path>
+                  </svg>
+                  <!-- Notification badge -->
+                  <span
+                    aria-hidden="true"
+                    class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
+                  ></span>
+                </button>
+                <template x-if="isNotificationsMenuOpen">
+                  <ul
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click.away="closeNotificationsMenu"
+                    @keydown.escape="closeNotificationsMenu"
+                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
+                    aria-label="submenu"
+                  >
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#"
+                      >
+                        <span>Messages</span>
+                        <span
+                          class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
+                        >
+                          13
+                        </span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#"
+                      >
+                        <span>Sales</span>
+                        <span
+                          class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-600 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-600"
+                        >
+                          2
+                        </span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#"
+                      >
+                        <span>Alerts</span>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </li>
+              <!-- Profile menu -->
+              <li class="relative">
+                <button
+                  class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  @click="toggleProfileMenu"
+                  @keydown.escape="closeProfileMenu"
+                  aria-label="Account"
+                  aria-haspopup="true"
+                >
+                  <img
+                    class="object-cover w-8 h-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    alt=""
+                    aria-hidden="true"
+                    id="avatar-profile"
+                  />
+                </button>
+                <template x-if="isProfileMenuOpen">
+                  <ul
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click.away="closeProfileMenu"
+                    @keydown.escape="closeProfileMenu"
+                    class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                    aria-label="submenu"
+                  >
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-3"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <span>Profile</span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-3"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                          ></path>
+                          <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li class="flex">
+                      <a
+                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                        href="#" @click="logOut"
+                      >
+                        <svg
+                          class="w-4 h-4 mr-3"
+                          aria-hidden="true"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                          ></path>
+                        </svg>
+                        <span>Log out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+              </li>
+            </ul>
+          </div>
+        </header>
+        <main class="h-full pb-16 overflow-y-auto">
+          <div class="container grid px-6 mx-auto">
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Solicitudes
+            </h2>
+            <!-- CTA -->
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Filtros
+            </h4>
+            
+            <div class="grid gap-6 mb-8 md:grid-cols-2">
+              <div
+                class="min-w-0 p-4 bg-base-300 rounded-lg shadow-xs dark:bg-gray-800"
+              >
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Fecha desde</span>
+                <!-- focus-within sets the color for the icon when input is focused -->
+                <div
+                  class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+                >
+                  <input
+                    class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                    type="date" id="fechaDesde"
+                  />
+
+                  
+                </div>
+              </label>
+              </div>
+              <div
+                class="min-w-0 p-4 bg-base-300 rounded-lg shadow-xs dark:bg-gray-800"
+              >
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Fecha hasta</span>
+                <!-- focus-within sets the color for the icon when input is focused -->
+                <div
+                  class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+                >
+                  <input
+                    class="block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                    type="date"  id="fechaHasta"
+                  />
+                  
+                </div>
+              </label>
+              </div>
+              
+            </div>
+            
+
+            <div class="grid gap-6 mb-8 md:grid-cols-2">
+              <div
+                class="min-w-0 p-4 bg-base-300 rounded-lg shadow-xs dark:bg-gray-800"
+              >
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Empresa</span>
+                <!-- focus-within sets the color for the icon when input is focused -->
+                <div
+                  class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+                >
+                <select id="listaEmpresas" class="select block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input">
+                  
+                </select>
+
+                  
+                </div>
+              </label>
+              </div>
+              <div
+                class="min-w-0 p-4 bg-base-300 rounded-lg shadow-xs dark:bg-gray-800"
+              >
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Estado</span>
+                <!-- focus-within sets the color for the icon when input is focused -->
+                <div
+                  class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400"
+                >
+                <select id="listaEstados" class="select block w-full pl-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input">
+                  
+                </select>
+                  
+                </div>
+              </label>
+              </div>
+              
+            </div>
+
+
+
+            <div class="btn-group">
+              <button
+                class="btn btn-primary"
+              onclick="filtrar()">
+                Filtrar
+              </button>
+              <button
+                class="btn btn-accent btnExportar" onclick="exportar('csv')" disabled>
+                Exportar CSV
+              </button>
+              <button
+              class="btn btn-success btnExportar" onclick="exportar('xls')" disabled>
+              Exportar XLS
+            </button>
+            <button
+              class="btn btn-primary" onclick="verSolicitudPorId()">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </button>
+            </div>
+            
+
+            
+            
+            <div class="tabs">
+              <a class="tab tab-lifted tab-active" id="tabLista">Lista</a> 
+              <a class="tab tab-lifted" id="tabExportar">Exportar</a>
+            </div>
+            <div class="w-full overflow-hidden rounded-lg shadow-xs" id="templateLista">
+              
+              <progress class="progress w-full" id="cargandoLista"></progress>
+              <div class="w-full overflow-x-auto bg-base-300">
+                
+                <table class="w-full whitespace-no-wrap">
+                  
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                    <th class="px-4 py-3">
+                      #
+                    </th>
+                    <th class="px-4 py-3">
+                      ID
+                    </th>
+                      <th class="px-4 py-3">Solicitante</th>
+                      <th class="px-4 py-3">Empresa</th>
+                      <th class="px-4 py-3">Monto</th>
+                      <th class="px-4 py-3">Estado</th>
+                      <th class="px-4 py-3">Fecha</th>
+                      <th class="px-4 py-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                    id="tabla-listado"
+                  >
+                    
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+              >
+                <span class="flex items-center col-span-3" id="pagination-texto">
+                  Mostrando
+                </span>
+                <span class="col-span-2"></span>
+                <!-- Pagination -->
+                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                  <nav aria-label="Table navigation" id="pagination-numeracion">
+                    
+                  </nav>
+                </span>
+              </div>
+            </div>
+
+
+
+            <div class="w-full overflow-hidden rounded-lg shadow-xs hidden" id="templateExportar">
+              
+              
+              <div class="w-full overflow-x-auto bg-base-300">
+                
+                <table class="w-full whitespace-no-wrap">
+                  
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                    <th class="px-4 py-3">
+                      #
+                    </th>
+                      <th class="px-4 py-3">Solicitante</th>
+                      <th class="px-4 py-3">Empresa</th>
+                      <th class="px-4 py-3">Monto</th>
+                      <th class="px-4 py-3">Estado</th>
+                      <th class="px-4 py-3">Fecha</th>
+                      <th class="px-4 py-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                    id="tabla-exportar"
+                  >
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="assets/js/currency.min.js"></script>
+    <script src="assets/js/shared.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    var solicitudesSeleccionadas = [];
+    var listaActual = [];
+    var loading = true;
+    var paginaActual = 0;
+    var paginaSiguiente = paginaActual+1;
+    var cantidadAMostrar = 10;
+    var cantidadHojas = 1;
+    var filtroActual = "";
+    var cantidadTotal = 1000; 
+    var asc = false;
+    var empresa = 0;
+    var estado = 0;
+
+    var fechaDesde = moment().subtract(1, 'days').format('MM/DD/YYYY');
+    var fechaHasta = moment().add(1, 'days').format('MM/DD/YYYY');
+
+    $(document).ready(function() {
+      cargarSelects();
+      cargaLista(paginaActual);
+
+    });
+
+    $( "#listaEmpresas" )
+  .change(function () {
+    empresa = $( this ).val();
+  });
+
+  $( "#listaEstados" )
+  .change(function () {
+    estado = $( this ).val();
+  });
+
+    
+      function cargarSelects(){
+        cargarListaEstados();
+        cargarEmpresas();
+      }
+
+      function cargarEmpresas() {
+        var row = '';
+        let headers1 = new Headers();
+    headers1.append('Content-Type', 'application/json');
+  headers1.append('Accept', '*/*');
+  headers1.append('Access-Control-Allow-Origin', '*');
+  headers1.append('GET', 'POST', 'OPTIONS');
+  fetch(`https://servicios.hcgrupo.com:56334/api/empresa`, {
+    //mode: 'no-cors',
+    method: 'GET',
+    headers: headers1
+  })
+  .then(response => response.json())
+  .then(function (lista) {
+     
+             var empresas = lista;
+             console.log(empresas);
+for (let indexE = 0; indexE < empresas.length; indexE++) {
+  const elementE = empresas[indexE];
+  row += `<option value="${elementE.empresaId}">${elementE.empresaNombre}</option>`;
+  
+}
+row += `<option value="0" selected>Todas los empresas</option>`;
+  $('#listaEmpresas').append(row);
+
+
+         })
+  .catch(error => console.log('Authorization failed : ' + error.message));
+      }
+
+      function cargarListaEstados() {
+        var row = '';
+        let headers1 = new Headers();
+    headers1.append('Content-Type', 'application/json');
+  headers1.append('Accept', '*/*');
+  headers1.append('Access-Control-Allow-Origin', '*');
+  headers1.append('GET', 'POST', 'OPTIONS');
+  fetch(`https://servicios.hcgrupo.com:56334/api/Estado`, {
+    //mode: 'no-cors',
+    method: 'GET',
+    headers: headers1
+  })
+  .then(response => response.json())
+  .then(function (lista) {
+     
+             estados = lista;
+             console.log(estados);
+for (let indexE = 0; indexE < estados.length; indexE++) {
+  const elementE = estados[indexE];
+  row += `<option value="${elementE.estadoId}">${elementE.estadoNombre}</option>`;
+  
+}
+row += `<option value="0" selected>Todos los estados</option>`;
+  $('#listaEstados').append(row);
+
+
+         })
+  .catch(error => console.log('Authorization failed : ' + error.message));
+    }
+    
+    
+      
+      function filtrar() {
+        var desde = $("#fechaDesde")[0].value;
+        var hasta = $("#fechaHasta")[0].value;
+        fechaDesde = moment(desde).format('MM/DD/YYYY');
+        fechaHasta = moment(hasta).format('MM/DD/YYYY');
+        cargaLista(0);
+      }
+
+      function cargaLista(pageIndex) {
+        paginaActual = pageIndex;
+        $("#cargandoLista").show();
+    let headers1 = new Headers();
+    headers1.append('Content-Type', 'application/json');
+  headers1.append('Accept', '*/*');
+  headers1.append('Access-Control-Allow-Origin', '*');
+  headers1.append('GET', 'POST', 'OPTIONS');
+  var lega = JSON.parse(logged);
+        fetch(`https://servicios.hcgrupo.com:56334/api/Solicitud?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}&take=${cantidadAMostrar}&skip=${paginaActual*cantidadAMostrar}&asc=${asc}&usuario=${lega.usuarioId}&empresa=${empresa}&estado=${estado}`, {
+    //mode: 'no-cors',
+    method: 'GET',
+    headers: headers1
+  })
+  .then(response => response.json())
+  .then(function (res) {
+    $("#cargandoLista").hide();
+             console.log(res);
+             //$("#cargandoTabla").hide();
+             var row = "";
+             cantidadTotal = res.total;
+             cantidadHojas = Math.round(res.total / cantidadAMostrar);
+             console.log(cantidadHojas);
+             listaActual = res.lista;
+             for (let index = 0; index < res.lista.length; index++) {
+               const element = res.lista[index];
+               
+               row += `
+               <tr class="text-gray-700 dark:text-gray-400">
+                <td class="px-4 py-3 text-sm">
+                  <div class="form-control">
+                        <label class="label cursor-pointer">
+                          <input solicitudId="${element.solicitudId}" type="checkbox" ${estaAprobado(element.solicitudEstadoActual) ? '' : 'disabled'} ${estaSeleccionado(element.solicitudId) ? 'checked' : ''} class="checkbox checkbox-primary solicitudCheckbox" />
+                        </label>
+                      </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                       #${element.solicitudId}
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="${'https://ui-avatars.com/api/?background=FFFFFF&color=121317&name='+ element.solicitante.nombreApellido.replace(" ", "+")}"
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">${element.solicitante.nombreApellido}</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                              ${element.solicitante.telefono}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                       ${element.empresa.empresaNombre}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ${currency(element.solicitudMonto, { precision: 0, symbol: '₲', separator: '.' }).format()}
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <span
+                          class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
+                        >
+                          ${element.solicitudEstadoActual}
+                        </span>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ${moment(element.solicitudFecha).format("DD/MM/YYYY")}
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                          <button ${tienePermisos(element.solicitudEstadoActual) ? '' : 'disabled'}
+                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit" onClick="editarSolicitud(${element.solicitudId})"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="${tienePermisos(element.solicitudEstadoActual) ? 'currentColor' : ''}"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                              ></path>
+                            </svg>
+                          </button>
+                          
+                        </div>
+                      </td>
+                    </tr>
+      `;
+             }
+             
+             
+             $('#tabla-listado').html(row);
+             $(".solicitudCheckbox").click( function(){
+              var chkId = $(this).attr("solicitudid");
+                if( $(this).is(':checked') ){
+                  
+                  var filtered = $.grep(listaActual, function (el) {
+                      return el.solicitudId == chkId;
+                  });
+                  solicitudesSeleccionadas.push(filtered[0]);
+                }else {
+                  eliminarSolicitud(chkId);
+                }
+                if(solicitudesSeleccionadas.length > 0) {
+                  $(".btnExportar").removeAttr("disabled");
+                } else{
+                  $(".btnExportar").attr( "disabled", "disabled" );
+                }
+                cargarListaExportar();
+              });
+
+             var rowPagination = "";
+             rowPagination += `
+             <ul class="inline-flex items-center">
+                  <li>
+                        <button
+                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple page-link"
+                          aria-label="Previous" ${paginaActual == 0 ? 'disabled' : ''} value="${parseInt(paginaActual)-1}"
+                        >
+                          <svg
+                            class="w-4 h-4 fill-current"
+                            aria-hidden="true"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </button>
+                      </li>`;
+             for (let index = paginaActual; index < parseInt(paginaActual)+1; index++) {
+              if(paginaActual == index) {
+                rowPagination += `
+
+                  <li>
+                        <button
+                          class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple page-link"
+                          value="${index}" >
+                        ${parseInt(index)+1}
+                        </button>
+                      </li>
+                  
+              `;
+              } else {
+                rowPagination += `
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple page-link"
+                          value="${index}">
+                        ${parseInt(index)+1}
+                        </button>
+                      </li>
+                  
+              `;
+              }
+               
+             }
+             rowPagination += `
+
+                  <li>
+                        <button ${paginaActual == cantidadHojas ? 'disabled' : ''}
+                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple page-link"
+                          aria-label="Next" value="${parseInt(paginaActual)+1}"
+                        >
+                          <svg
+                            class="w-4 h-4 fill-current"
+                            aria-hidden="true"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </button>
+                      </li>
+
+
+                </ul>`;
+            
+                $("#pagination-texto").text("Total de solicitudes: " + res.total + ". Mostrando: "+ res.lista.length +".");
+            
+             $('#pagination-numeracion').html(rowPagination);
+             rowPagination = "";
+             $(".page-link").on( "click", function() {
+              $('#listaClientes').html("");
+              $('#navTabla').html("");
+              $("#cargandoTabla").show();
+              var value = $(this).attr("value");
+              cargaLista(value);
+            });
+         })
+  .catch(function (error) {
+    $("#cargandoLista").hide();
+    console.log('Authorization failed : ' + error.message);});
+    }
+
+    function editarSolicitud(id) {
+      window.location.href = "solicitud-detalle?id="+id;
+    }
+
+    function estaSeleccionado(id) {
+      var filtered = $.grep(solicitudesSeleccionadas, function (el) {
+          return el.solicitudId == id;
+      });
+      return filtered.length > 0;
+    }
+
+
+    function estaAprobado(estado) {
+      var rol = JSON.parse(logged).rol;
+      return estado == "Aprobado" && rol == "G";
+    }
+
+    $("#tabExportar").click( function(){
+      $('#templateLista').hide();
+      $('#templateExportar').show();
+      $("#tabLista").removeClass("tab-active");
+      $("#tabExportar").addClass("tab-active");
+    });
+
+    $("#tabLista").click( function(){
+      $('#templateExportar').hide();
+      $('#templateLista').show();
+      $("#tabExportar").removeClass("tab-active");
+      $("#tabLista").addClass("tab-active");
+    });
+
+    function verSolicitudPorId() {
+      Swal.fire({
+  title: 'Ver solicitud por ID',
+  input: 'number',
+  inputAttributes: {
+    autocapitalize: 'off'
+  },
+  showCancelButton: true,
+  confirmButtonText: 'Ver',
+  showLoaderOnConfirm: true,
+  preConfirm: (login) => {
+    editarSolicitud(login);
+  },
+  allowOutsideClick: () => !Swal.isLoading()
+}).then((result) => {
+  
+})
+    }
+    
+    function cargarListaExportar() {
+      var row = '';
+      for (let index = 0; index < solicitudesSeleccionadas.length; index++) {
+               const element = solicitudesSeleccionadas[index];
+               
+               row += `
+               <tr class="text-gray-700 dark:text-gray-400">
+                <td class="px-4 py-3 text-sm">
+                  ${index+1}
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="${'https://ui-avatars.com/api/?background=FFFFFF&color=121317&name='+ element.solicitante.nombreApellido.replace(" ", "+")}"
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">${element.solicitante.nombreApellido}</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                              ${element.solicitante.telefono}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                       ${element.empresa.empresaNombre}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        GS. ${currency(element.solicitudMonto, { precision: 0, symbol: '₲', separator: '.' }).format()}
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <span
+                          class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
+                        >
+                          ${element.solicitudEstadoActual}
+                        </span>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        ${moment(element.solicitudFecha).format("DD/MM/YYYY")}
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                          <button
+                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit" onClick="eliminarSolicitud(${element.solicitudId})"
+                          >
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                          </button>
+                          
+                        </div>
+                      </td>
+                    </tr>
+      `;
+             }
+             $('#tabla-exportar').html(row);
+    }
+
+    function eliminarSolicitud(id) {
+      var indexS = solicitudesSeleccionadas.findIndex(object => {
+        return object.solicitudId == id;
+      });
+
+      if (indexS > -1) {
+        solicitudesSeleccionadas.splice(indexS, 1);
+      }
+      cargarListaExportar();
+    }
+
+    function exportar(tip) {
+      
+      var data = {
+        lista: solicitudesSeleccionadas.map(x => parseInt(x.solicitudId)),
+        usuario: JSON.parse(logged).usuario1,
+        tipo: tip
+      };
+      let headers1 = new Headers();
+headers1.append('Content-Type', 'application/json');
+headers1.append('Accept', '*/*');
+headers1.append('Access-Control-Allow-Origin', '*');
+headers1.append('GET', 'POST', 'OPTIONS');
+    fetch(`https://servicios.hcgrupo.com:56334/api/ExportarSolicitud`, {
+            //mode: 'no-cors',
+            method: 'POST',
+            headers: headers1,
+            body: JSON.stringify(data)
+          })
+          .then(response => response.blob())
+          .then(function (res) {
+            const timeElapsed = Date.now();
+const today = new Date(timeElapsed);
+            
+            var file = window.URL.createObjectURL(res);
+            const a = document.createElement("a");
+      document.body.appendChild(a);
+            a.href = file;
+      a.download = "solicitudes_"+today.toLocaleDateString()+"."+res.type.split("/")[1];
+      a.click();
+      setTimeout(() => {
+        window.URL.revokeObjectURL(file);
+        document.body.removeChild(a);
+      }, 0);
+            // window.location.assign(file);
+         
+          
+     })
+.catch(error => console.log('Authorization failed : ' + error.message));
+    }
+  
+      
+    </script>
+    
+  </body>
+</html>

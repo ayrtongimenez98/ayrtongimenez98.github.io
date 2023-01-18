@@ -1,0 +1,42 @@
+{
+"name": "Tesoreria HBF",
+"short_name": "Tesoreria HBF",
+"start_url": "/solicitudes",
+"display": "standalone",
+"description": "Aplicación para gestión de solicitudes CR",
+"lang": "es",
+"dir": "auto",
+"theme_color": "#9333ea",
+"background_color": "#000000",
+"orientation": "any",
+"icons": [
+    {
+        "src": "img/ic_stat_icono.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+    }
+],
+"screenshots": [
+    {
+        "src": "img/screen.png",
+        "sizes": "2880x1800",
+        "type": "image/png",
+        "description": "Pantalla de inicio"
+    }
+],
+"related_applications": [
+    {
+        "platform":"android",
+        "url": "https://play.google.com/store/apps/details?id=com.ion_soft.tesoreria_grupo_hbf"
+    }
+],
+"prefer_related_applications": "false",
+"shortcuts": [
+    {
+        "name":"Tesoreria HBF",
+        "url":"/solicitudes",
+        "description":"Abrir solicitudes"
+    }
+]
+}
