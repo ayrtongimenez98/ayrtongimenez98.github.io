@@ -88375,7 +88375,7 @@ q=j.fr
 p=A.b_(m,m,B.Q,m,m,m,m,m,m,m,m,m,m,m,m,m,m,!0,m,m,m,m,m,m,m,m)
 o=j.dy
 n=A.af(o).j("an<1,eL<em>>")
-return A.c3(A.f4(A.cW(A.a([new A.al(new A.E(0,20,0,20),l,m),new A.Qh(s,new A.I(1/0,70),m),new A.al(new A.E(30,20,30,0),k,m),new A.al(new A.E(30,20,30,0),A.a5U(B.LK,16,B.h7,24,!0,A.ar(new A.an(o,new A.anF(),n),!0,n.j("b8.E")),new A.anG(j),p,q,t.yO),m),new A.al(new A.E(0,20,0,0),new A.SV(A.a([new A.al(new A.E(5,5,5,5),A.a6("Ascendente",m,m,m,m,m,m),m),new A.al(new A.E(5,5,5,5),A.a6("Descendente",m,m,m,m,m,m),m)],r),j.Q,new A.anH(j,b),B.Q,B.l,B.Q,B.Q,m),m),new A.al(new A.E(0,20,0,0),new A.PA(new A.anI(j,i),m,m,m,A.lm(m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.bs(B.Q,1,B.O,B.H),m,m,m,m),B.h,m,!1,m,B.a57,m),m)],r),B.I,B.G,B.M,B.S),m,m),500,m)},
+return A.c3(A.f4(A.cW(A.a([new A.al(new A.E(0,20,0,20),l,m),new A.Qh(s,new A.I(1/0,70),m),new A.al(new A.E(30,20,30,0),k,m),new A.al(new A.E(30,20,30,0),A.a5U(B.LK,16,B.h7,24,!0,A.ar(new A.an(o,new A.anF(),n),!0,n.j("b8.E")),new A.anG(j),p,q,t.yO),m),new A.al(new A.E(0,20,0,0),new A.SV(A.a([new A.al(new A.E(5,5,5,5),A.a6("Ascendente",m,m,m,m,m,m),m),new A.al(new A.E(5,5,5,5),A.a6("Descendente",m,m,m,m,m,m),m)],r),j.Q,new A.anH(j,b),B.Q,B.l,B.Q,B.Q,m),m),new A.al(new A.E(0,20,0,0),new A.PA(new A.anI(j,i),m,m,m,A.lm(m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,m,new A.bs(B.Q,1,B.O,B.H),m,m,m,m),B.h,m,!1,m,B.a57,m),m)],r),B.I,B.G,B.M,B.S),m,m),700,m)},
 $S:515}
 A.anB.prototype={
 $0(){var s=0,r=A.S(t.H),q=this
