@@ -34,7 +34,8 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    const serviceWorkerVersion = "3351111742";
+    
+    const serviceWorkerVersion = "2032333881";
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -101,15 +102,18 @@
     let deferredPrompt;
 
     window.addEventListener('beforeinstallprompt', (e) => {
+      console.log(e,deferredPrompt);
       deferredPrompt = e;
     });
 
     function promptInstall(){
+      
        deferredPrompt.prompt();
     }
 
     // Listen for app install event
     window.addEventListener('appinstalled', () => {
+      console.log(deferredPrompt);
       deferredPrompt = null;
       appInstalled();
     });
